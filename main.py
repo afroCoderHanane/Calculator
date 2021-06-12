@@ -30,13 +30,25 @@ operation={
   "+": add,
   "-": substract
 }
-num1 = int(input("Enter your first number\n"))
-num2 = int(input("Enter your next number\n"))
 
-for key in operation:
-  print(key)
-operation_symbol = input("From an operation above pick symbol : ")
 
-calc_function = operation[operation_symbol]
-answer = calc_function(num1,num2)
-print(f"{num1} {operation_symbol} {num2} = {answer}")
+def calc():
+  
+  num1 = float(input("Enter your first number\n"))
+  should_continue = True
+  while should_continue:
+    for key in operation:
+      print(key)
+    operation_symbol = input("From an operation above pick symbol : ")
+
+    num2 = float(input("Enter your next number\n"))
+    calc_function = operation[operation_symbol]
+    answer = calc_function(num1,num2)
+    print(f"{num1} {operation_symbol} {num2} = {answer}")
+    offset = input(f"press'yes' if you want to continue with {answer} or press 'no' restart with a new number" ).lower()
+    if(offset == "yes"):
+      num1 = answer
+    else:
+      calc()
+
+calc()
